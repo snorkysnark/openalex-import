@@ -1,20 +1,17 @@
 from pathlib import Path
 import json
 import gzip
-from typing import cast
+from typing import Annotated, cast
+import typer
 
 from pyalex import Works, Authors, Sources, Institutions, Topics, Publishers, Funders
 from pyalex.api import BaseOpenAlex
 from tqdm import tqdm
 
 
-SNAPSHOT_DIR = Path("openalex-snapshot")
-NUM_EXAMPLES = 5
-
-
-def download_examples(kind: type[BaseOpenAlex], num: int):
+def download_examples(kind: type[BaseOpenAlex], snapshot_dir: Path, num: int):
     folder = (
-        SNAPSHOT_DIR.joinpath("data")
+        snapshot_dir.joinpath("data")
         .joinpath(kind.__name__.lower())
         .joinpath("examples")
     )
@@ -30,7 +27,11 @@ def download_examples(kind: type[BaseOpenAlex], num: int):
             json.dump(data, file)
 
 
-if __name__ == "__main__":
+def main(snapshot_dir: Path, num: Annotated[int, typer.Option("-n", "--num")]):
     for kind in [Works, Authors, Sources, Institutions, Topics, Publishers, Funders]:
         print("Downloading", kind.__name__)
-        download_examples(kind, NUM_EXAMPLES)
+        download_examples(kind, snapshot_dir, num)
+
+
+if __name__ == "__main__":
+    typer.run(main)

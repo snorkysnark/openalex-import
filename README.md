@@ -30,10 +30,10 @@ aws s3 sync "s3://openalex" "openalex-snapshot" --no-sign-request
 or individual entities from the API. The following script downloads 5 random entities of each type
 
 ```
-uv run python download-examples-each.py
+uv run python download-examples-each.py openalex-snapshot
 ```
 
-## 2. Convert to CSV
+## Convert to CSV (optional)
 
 
 *This script assumes your downloaded snapshot is in openalex-snapshot and you've made a directory csv-files to hold the CSV files.*
@@ -45,18 +45,20 @@ uv run python download-examples-each.py
 python flatten-openalex-jsonl.py
 ```
 
-## 3. Upload to relational database
+## Import directly to database
 
-Postgres:
+First of all, you must create the schema:
 
 ```
 psql -d openalex -f postgres/openalex-pg-schema.sql
-psql -d openalex -f postgres/copy-openalex-csv.sql
-```
 
-Duckdb:
-
-```
 duckdb openalex-shapshot.duckdb -f duckdb/openalex-duckdb-schema.sql
-duckdb openalex-shapshot.duckdb -f duckdb/copy-openalex-csv.sql
+```
+
+Write snapshot directly to database:
+
+```
+uv run python db-import.py openalex-snapshot postgresql:///openalex
+
+uv run python db-import.py openalex-snapshot duckdb:///openalex-shapshot.duckdb
 ```
