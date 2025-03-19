@@ -30,7 +30,7 @@ aws s3 sync "s3://openalex" "openalex-snapshot" --no-sign-request
 or individual entities from the API. The following script downloads 5 random entities of each type
 
 ```
-uv run download-examples-each.py
+uv run python download-examples-each.py
 ```
 
 ## 2. Convert to CSV
