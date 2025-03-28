@@ -2,6 +2,7 @@ import glob
 import gzip
 import json
 from pathlib import Path
+from typing import Annotated
 from sqlalchemy import Connection, Table, MetaData, Column, create_engine
 import typer
 
@@ -819,8 +820,10 @@ def load_works(snapshot_dir: Path, conn: Connection):
                         )
 
 
-def main(snapshot_dir: Path, db_url: str):
-    with create_engine(db_url).connect() as conn:
+def main(
+    snapshot_dir: Path, db_url: str, echo: Annotated[bool, typer.Option()] = False
+):
+    with create_engine(db_url, echo=echo).connect() as conn:
         load_topics(snapshot_dir, conn)
         load_authors(snapshot_dir, conn)
         load_concepts(snapshot_dir, conn)
