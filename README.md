@@ -66,3 +66,7 @@ uv run python db-import.py openalex-snapshot postgresql:///openalex
 ```
 uv run python db-import.py openalex-snapshot duckdb:///openalex-shapshot.duckdb
 ```
+
+Flags:
+
+- `--echo` - echo sqlalchemy statements

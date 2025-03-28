@@ -821,7 +821,9 @@ def load_works(snapshot_dir: Path, conn: Connection):
 
 
 def main(
-    snapshot_dir: Path, db_url: str, echo: Annotated[bool, typer.Option()] = False
+    snapshot_dir: Path,
+    db_url: str,
+    echo: Annotated[bool, typer.Option(help="echo sqlalchemy statements")] = False,
 ):
     with create_engine(db_url, echo=echo).connect() as conn:
         load_topics(snapshot_dir, conn)
