@@ -51,7 +51,9 @@ First of all, you must create the schema:
 
 ```
 psql -d openalex -f postgres/openalex-pg-schema.sql
+```
 
+```
 duckdb openalex-shapshot.duckdb -f duckdb/openalex-duckdb-schema.sql
 ```
 
@@ -59,6 +61,8 @@ Write snapshot directly to database:
 
 ```
 uv run python db-import.py openalex-snapshot postgresql:///openalex
+```
 
+```
 uv run python db-import.py openalex-snapshot duckdb:///openalex-shapshot.duckdb
 ```
