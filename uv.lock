@@ -72,15 +72,11 @@ wheels = [
 [[package]]
 name = "duckdb-engine"
 version = "0.15.0"
-source = { registry = "https://pypi.org/simple" }
+source = { git = "https://github.com/snorkysnark/duckdb_engine?branch=enable-caching#1e36fa4b388bc002faafc4b7fa2343a91fdd652a" }
 dependencies = [
     { name = "duckdb" },
     { name = "packaging" },
     { name = "sqlalchemy" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/ac/2d/ea892e63f8b372a3aa48caa2de9eed8e4c731275b9715a1334be6b784329/duckdb_engine-0.15.0.tar.gz", hash = "sha256:59f67ec95ebf9eb4dea22994664dfd34edce3c7416b862daa46da43f572ad6ef", size = 47695 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/0c/92/a3b7edba792772f364ad6c57ceb8685fb5ae5f893704650f2b46978f9b34/duckdb_engine-0.15.0-py3-none-any.whl", hash = "sha256:d18acd73f03202145e1baa86605dca3612080fd0a849dbc42b38111ffee6857c", size = 49634 },
 ]
 
 [[package]]
@@ -152,7 +148,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "duckdb-engine", specifier = ">=0.15.0" },
+    { name = "duckdb-engine", git = "https://github.com/snorkysnark/duckdb_engine?branch=enable-caching" },
     { name = "psycopg2", specifier = ">=2.9.10" },
     { name = "pyalex", specifier = ">=0.18" },
     { name = "sqlalchemy", specifier = ">=2.0.39" },
