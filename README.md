@@ -42,7 +42,7 @@ uv run python download-examples-each.py openalex-snapshot
 
 
 ```
-python flatten-openalex-jsonl.py
+uv run python flatten-openalex-jsonl.py
 ```
 
 ## Import directly to database
