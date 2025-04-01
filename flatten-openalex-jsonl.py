@@ -448,7 +448,6 @@ def flatten_authors():
         authors_writer = csv.DictWriter(
             authors_csv,
             fieldnames=file_spec["authors"].columns,
-            extrasaction="ignore",
         )
         authors_writer.writeheader()
 
@@ -565,7 +564,6 @@ def flatten_concepts():
         concepts_writer = csv.DictWriter(
             concepts_csv,
             fieldnames=filespec["concepts"].name,
-            extrasaction="ignore",
         )
         concepts_writer.writeheader()
 
@@ -682,7 +680,6 @@ def flatten_institutions():
         institutions_writer = csv.DictWriter(
             institutions_csv,
             fieldnames=file_spec["institutions"].columns,
-            extrasaction="ignore",
         )
         institutions_writer.writeheader()
 
@@ -799,7 +796,6 @@ def flatten_publishers():
         publishers_writer = csv.DictWriter(
             publishers_csv,
             fieldnames=filespec["publishers"].columns,
-            extrasaction="ignore",
         )
         publishers_writer.writeheader()
 
@@ -875,7 +871,6 @@ def flatten_sources():
         sources_writer = csv.DictWriter(
             sources_csv,
             fieldnames=filespec["sources"].columns,
-            extrasaction="ignore",
         )
         sources_writer.writeheader()
 
@@ -963,9 +958,7 @@ def flatten_works():
         ) as related_works_csv,
     ):
 
-        works_writer = init_dict_writer(
-            works_csv, file_spec["works"], extrasaction="ignore"
-        )
+        works_writer = init_dict_writer(works_csv, file_spec["works"])
         primary_locations_writer = init_dict_writer(
             primary_locations_csv, file_spec["primary_locations"]
         )
@@ -977,7 +970,7 @@ def flatten_works():
         biblio_writer = init_dict_writer(biblio_csv, file_spec["biblio"])
         topics_writer = init_dict_writer(topics_csv, file_spec["topics"])
         concepts_writer = init_dict_writer(concepts_csv, file_spec["concepts"])
-        ids_writer = init_dict_writer(ids_csv, file_spec["ids"], extrasaction="ignore")
+        ids_writer = init_dict_writer(ids_csv, file_spec["ids"])
         mesh_writer = init_dict_writer(mesh_csv, file_spec["mesh"])
         open_access_writer = init_dict_writer(open_access_csv, file_spec["open_access"])
         referenced_works_writer = init_dict_writer(
